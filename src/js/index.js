@@ -1,6 +1,6 @@
-import moment from 'moment'
+const moment = require('moment')
 
-import { ipcRenderer } from 'electron'
+const { ipcRenderer } = require('electron')
 
 const secondsToTime = (s) => {
 	let momentTime = moment.duration(s, 'seconds')
@@ -10,8 +10,9 @@ const secondsToTime = (s) => {
   return `${min}:${sec}`
 }
 
-ipcRenderer.on('timer-change',(even, t) => {
-	current = i
+ipcRenderer.on('timer-change',(event, t) => {
+	current = t
+	console.log(timeDiv);
 	timeDiv.innerHTML = secondsToTime(current)
 	
 	let i = setInterval(() => {

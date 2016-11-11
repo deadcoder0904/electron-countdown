@@ -12,13 +12,11 @@ const createWindow = () => {
   mainWindow = new BrowserWindow({width: 360, height: 240, frame: false})
 
   mainWindow.loadURL('file://'+ __dirname + '/src/index.html')
-
-  // mainWindow.webContents.openDevTools()
   
   mainWindow.on('closed', function() {
     mainWindow = null
   })
-  
+
   // When UI has finish loading
   mainWindow.webContents.on('did-finish-load', () => {
       // Send the timer value
