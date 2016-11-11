@@ -1,0 +1,12 @@
+html {
+	background: #214
+}
+
+#timeDiv {
+	color: lightblue;
+	padding: 5px;
+	background: green;
+	font-family: Tahoma;
+	font-size: 24px;
+	text-align: center;
+}

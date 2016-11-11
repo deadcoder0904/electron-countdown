@@ -2,19 +2,28 @@ import electron , { app, BrowserWindow } from 'electron'
 
 let mainWindow = null
 
+let argsCmd = process.argv.slice(2);
+let timerTime = parseInt(argsCmd[0]);
+
 const createWindow = () => {
 
   console.log('The application is ready.')
 
-  mainWindow = new BrowserWindow({width: 1280, height: 1024})
+  mainWindow = new BrowserWindow({width: 360, height: 240, frame: false})
 
   mainWindow.loadURL('file://'+ __dirname + '/src/index.html')
 
-	mainWindow.webContents.openDevTools()
+  // mainWindow.webContents.openDevTools()
   
   mainWindow.on('closed', function() {
-  	mainWindow = null
-	})
+    mainWindow = null
+  })
+  
+  // When UI has finish loading
+  mainWindow.webContents.on('did-finish-load', () => {
+      // Send the timer value
+      mainWindow.webContents.send('timer-change', timerTime);
+  })
 }
 
 app.on('ready', createWindow)
